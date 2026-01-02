@@ -1,0 +1,27 @@
+name: 'dbtCourse'
+version: '1.0.0'
+config-version: 2
+
+profile: 'GK57269'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  dbtCourse:
+    +database: SAMSUNGDB         # All models use this database (SAMSUNGDB)
+    staging:                     # ONLY configure models in models/staging/
+      +schema: stage             # All staging models go into schema 'stage'
+      +materialized: table       # (Or use 'view' if you want views)
+    mart:
+      +schema: mart       # <-- ALL models in models/mart/ (like dim_...) go to schema 'mart'
+      +materialized: table

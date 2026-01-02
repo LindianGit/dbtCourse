@@ -1,0 +1,16 @@
+version: 2
+# These files will be used to create staging)
+sources:
+  - name: raw    # this is the label you'll use in dbt models (e.g., 'core' or 'source')
+    database: SAMSUNGDB
+    schema: RAW
+    tables:
+      - name: CORE_CUSTOMERS
+      - name: CORE_EMPLOYEES
+      - name: CORE_OUTLETS
+      - name: CORE_SERVICE_CENTERS
+      - name: CORE_AUCTION_PURCHASES
+      
+      - name: CORE_INVENTORY
+      - name: CORE_SALES
+      - name: CORE_REPAIRS
