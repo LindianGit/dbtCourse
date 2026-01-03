@@ -31,7 +31,7 @@ with sales as (
         null as purchase_price,
         null as purchased_by,
         null as auction_house,
-        s.sale_date,  
+        s.sale_date,  -- < ----- always have an event date 
         current_timestamp as load_timestamp
     from {{ ref('stg_sales') }} s
     left join {{ ref('dim_date') }} d
@@ -78,7 +78,7 @@ repairs as (
         null as purchase_price,
         null as purchased_by,
         null as auction_house,
-        r.repair_date,     
+        r.repair_date,     -- < ----- always have an event date 
         current_timestamp as load_timestamp
     from {{ ref('stg_repairs') }} r
     left join {{ ref('dim_date') }} d
@@ -123,14 +123,14 @@ auctions as (
         a.purchase_price,
         a.purchased_by,
         a.auction_house,
-        a.auction_date,
+        a.auction_date,   -- < ----- always have an event date 
         current_timestamp as load_timestamp
     from {{ ref('stg_auction_purchases') }} a
     left join {{ ref('dim_date') }} d
         on cast(a.auction_date as date) = cast(d.date_value as date)
     left join {{ ref('dim_outlet_snapshot') }} o
         on a.outlet_id = o.outlet_id
-        and o.dbt_valid_to is null
+        and o.dbt_valid_to is null   --<---- no loaded at type date possible
     left join {{ ref('dim_vehicle_snapshot') }} v
         on a.vin = v.vin
         and a.auction_date >= v.dbt_valid_from
