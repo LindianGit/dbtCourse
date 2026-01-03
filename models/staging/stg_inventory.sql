@@ -59,8 +59,8 @@ select
     TRY_TO_NUMBER(AcquisitionCost)                      as acquisition_cost,   -- Cost to acquire
     trim(CurrentStatus)                                 as current_status,     -- Status (e.g., available, sold, etc.)
     cast(OutletID as integer)                           as outlet_id,          -- Outlet identifier
-  --  current_timestamp                                   as dbt_loaded_at,      -- Load timestamp
-  TRY_TO_DATE(ACQUISITIONDATE) as dbt_loaded_at,      -- use as effective, not current date
+    current_timestamp                                   as dbt_loaded_at,      -- Load timestamp
+
     'stg_inventory'                                     as dbt_model_name,     -- Traceability for warehouse/admins
 
     -- Data Quality Flags

@@ -4,8 +4,14 @@
       target_schema='mart',
       target_database=target.database,
       unique_key='outlet_id',
-      strategy='timestamp',
-      updated_at='dbt_loaded_at'
+      strategy='check',
+      check_cols=[
+        'outlet_name',
+        'address',
+        'city',
+        'state',
+        'zip'
+      ]
     )
 }}
 

@@ -57,8 +57,7 @@ select
     trim(MechanicID)                                        as mechanic_id,         -- Unique mechanic identifier
     cast(MileageAtService as integer)                       as mileage_at_service,  -- Vehicle mileage at time of service
     upper(trim(WarrantyWork))                               as warranty_work,       -- 'YES'/'NO' indicating warranty status
-  --  current_timestamp                                       as dbt_loaded_at,       -- Load timestamp
-    TRY_TO_DATE(REPAIRDATE) as dbt_loaded_at,           -- use as effective, not current date
+    current_timestamp                                       as dbt_loaded_at,       -- Load timestamp
     'stg_repairs'                                           as dbt_model_name,      -- Traceability for warehouse/admins
 
     -- Data Quality Flags

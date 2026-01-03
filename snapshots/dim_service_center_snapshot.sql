@@ -1,11 +1,18 @@
-{% snapshot dim_service_center_snapshot %}
+ {% snapshot dim_service_center_snapshot %}
 {{
     config(
       target_schema='mart',
       target_database=target.database,
       unique_key='service_center_id',
-      strategy='timestamp',
-      updated_at='dbt_loaded_at'
+      strategy='check',
+      check_cols=[
+        'service_center_name',
+        'address',
+        'city',
+        'state',
+        'zip',
+        'outlet_id'
+      ]
     )
 }}
 

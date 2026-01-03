@@ -4,8 +4,18 @@
       target_schema='mart',
       target_database=target.database,
       unique_key='customer_id',
-      strategy='timestamp',
-      updated_at='dbt_loaded_at'
+      strategy='check',
+      check_cols=[
+        'first_name',
+        'last_name',
+        'phone',
+        'email',
+        'address',
+        'city',
+        'state',
+        'zip',
+        'preferred_contact_method'
+      ]
     )
 }}
 
