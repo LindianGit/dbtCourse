@@ -4,7 +4,16 @@
       target_schema='mart',
       unique_key='employee_id',
       strategy='check',
-      check_cols=['first_name', 'last_name', 'role', 'outlet_id', 'hire_date', 'termination_date', 'email', 'phone']
+      check_cols=[
+        'first_name',
+        'last_name',
+        'role',
+        'outlet_id',
+        'hire_date',
+        'termination_date',
+        'email',
+        'phone'
+      ]
     )
 }}
 
